@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookTrack Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-icon"><i class="fa-solid fa-book-open"></i></div><div><h1>BookTrack</h1><p>Read • Track • Grow</p></div></div>
+      <nav class="nav-menu">
+        <button class="nav-item active" data-filter="all"><i class="fa-solid fa-house"></i>Dashboard</button>
+        <button class="nav-item" data-filter="Reading"><i class="fa-solid fa-book-open-reader"></i>Reading</button>
+        <button class="nav-item" data-filter="Completed"><i class="fa-solid fa-circle-check"></i>Completed</button>
+        <button class="nav-item" data-filter="Want to Read"><i class="fa-solid fa-bookmark"></i>Want to Read</button>
+        <button class="nav-item" data-filter="favorite"><i class="fa-solid fa-heart"></i>Favorites</button>
+      </nav>
+      <div class="profile-card"><div class="avatar">BT</div><div><h3>Reader Profile</h3><p>Personal Dashboard</p></div></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div><p class="eyebrow">Welcome back 👋</p><h2>Your reading journey</h2><p class="subtitle">Track books, complete goals, and build better reading habits.</p></div><div class="top-actions"><button class="icon-btn" id="themeToggle"><i class="fa-solid fa-moon"></i></button><button class="primary-btn" id="openModalBtn"><i class="fa-solid fa-plus"></i>Add Book</button></div></header>
+      <section class="hero-panel"><div class="hero-copy"><span class="pill">Premium Reading Tracker</span><h1>Organize your books like a pro.</h1><p>Add books, mark progress, save favorites, rate reads, and watch your yearly goal grow.</p></div><div class="goal-ring-card"><div class="goal-ring" id="goalRing"><span id="goalRingText">0%</span></div><div><h3>Yearly Goal</h3><p><span id="completedGoalText">0</span> books completed</p></div></div></section>
+      <section class="stats-grid"><article class="stat-card"><div class="stat-icon blue"><i class="fa-solid fa-book"></i></div><div><p>Total Books</p><h3 id="totalBooks">0</h3></div></article><article class="stat-card"><div class="stat-icon purple"><i class="fa-solid fa-book-open-reader"></i></div><div><p>Reading</p><h3 id="readingBooks">0</h3></div></article><article class="stat-card"><div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div><div><p>Completed</p><h3 id="completedBooks">0</h3></div></article><article class="stat-card"><div class="stat-icon orange"><i class="fa-solid fa-fire"></i></div><div><p>Reading Streak</p><h3><span id="streakDays">0</span>d</h3></div></article></section>
+      <section class="workspace-grid"><div class="left-column"><section class="control-card"><h3>🎯 Reading Goal</h3><p>Set your yearly completed-books target.</p><div class="goal-input-row"><input type="number" id="readingGoal" placeholder="Example: 20" min="1"><button id="saveGoalBtn">Save</button></div></section><section class="control-card analytics-card"><h3>📊 Reading Analytics</h3><div class="mini-chart"><div class="bar" style="--h:45%"><span>Jan</span></div><div class="bar" style="--h:70%"><span>Feb</span></div><div class="bar" style="--h:35%"><span>Mar</span></div><div class="bar" style="--h:85%"><span>Apr</span></div><div class="bar" style="--h:60%"><span>May</span></div><div class="bar active" style="--h:95%"><span>Jun</span></div></div></section><section class="control-card"><h3>🏆 Achievements</h3><div class="achievement-list" id="achievementList"></div></section><section class="control-card recently-card"><h3>🕒 Recently Added</h3><div id="recentList" class="recent-list"></div></section></div>
+        <div class="right-column"><section class="library-header"><div><h2>My Library</h2><p>Manage and track your collection.</p></div><div class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="searchInput" placeholder="Search by title, author, genre..."></div></section><section class="filter-row"><button class="filter-chip active" data-filter="all">All</button><button class="filter-chip" data-filter="Reading">Reading</button><button class="filter-chip" data-filter="Completed">Completed</button><button class="filter-chip" data-filter="Want to Read">Want to Read</button><button class="filter-chip" data-filter="favorite">Favorites</button></section><div id="emptyState" class="empty-state"><div class="empty-icon"><i class="fa-solid fa-book"></i></div><h3>Your library is waiting.</h3><p>Add your first book and start building your reading journey.</p><button class="primary-btn" id="emptyAddBtn"><i class="fa-solid fa-plus"></i>Add First Book</button></div><section class="book-grid" id="bookList"></section></div></section>
+    </main>
+  </div>
+  <div class="modal" id="bookModal"><div class="modal-card"><button class="modal-close" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></button><div class="modal-title"><h2 id="modalTitle">Add New Book</h2><p>Fill the details and save your reading progress.</p></div><div class="form-grid"><input type="text" id="bookTitle" placeholder="Book title *"><input type="text" id="authorName" placeholder="Author name *"><input type="text" id="genre" placeholder="Genre"><input type="text" id="imageUrl" placeholder="Book cover image URL"><textarea id="description" placeholder="Short description"></textarea><input type="number" id="progress" placeholder="Progress %" min="0" max="100"><select id="status"><option>Want to Read</option><option>Reading</option><option>Completed</option></select><select id="rating"><option value="1">⭐ 1 Star</option><option value="2">⭐ 2 Stars</option><option value="3">⭐ 3 Stars</option><option value="4">⭐ 4 Stars</option><option value="5" selected>⭐ 5 Stars</option></select><label class="favorite-check"><input type="checkbox" id="favorite"><span>Mark as favorite ❤️</span></label><button class="primary-btn full" id="saveBookBtn">Save Book</button></div></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
